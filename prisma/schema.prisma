@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// prisma/schema.prisma
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+}
+
+model Service {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  category    String
+  description String?
+  showInList  Boolean   @default(true)
+  imageUrl    String?
+  priceUah    Int
+  priceEur    Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  reviewCount Int       @default(0)
+
+
+  service_features ServiceFeature []
+}
+
+model ServiceFeature  {
+  id          Int      @id @default(autoincrement())
+  serviceId   Int
+  sortOrder   Int      @default(0)
+  text        String
+
+  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+}
