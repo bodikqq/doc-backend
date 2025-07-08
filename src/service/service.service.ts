@@ -21,7 +21,6 @@ export class ServiceService {
       // Let the 404 you just created bubble up unchanged
       if (error instanceof NotFoundException) throw error;
 
-      // Pass through Prisma-specific errors if you want finer-grained handling
       if (error instanceof PrismaClientKnownRequestError) {
         // …inspect error.code here if needed
       }
