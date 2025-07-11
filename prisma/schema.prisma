@@ -10,8 +10,8 @@ generator client {
 
 // prisma/schema.prisma
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Service {
@@ -27,24 +27,27 @@ model Service {
   updatedAt   DateTime? @updatedAt
   reviewCount Int       @default(0)
 
-
-  service_features ServiceFeature []
+  service_features ServiceFeature[]
 }
 
-model ServiceFeature  {
-  id          Int      @id @default(autoincrement())
-  serviceId   Int
-  sortOrder   Int      @default(0)
-  text        String
+model ServiceFeature {
+  id        Int    @id @default(autoincrement())
+  serviceId Int
+  sortOrder Int    @default(0)
+  text      String
 
-  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 }
 
 model Contact {
-  id          Int      @id @default(autoincrement())
-  usersName        String? 
-  contact     String
-  text        String
-  createdAt   DateTime @default(now())
-  answered    Boolean  @default(false)
+  id          Int       @id @default(autoincrement())
+  name        String?
+  email       String?
+  phone       String?
+  serviceId   Int?
+  serviceName String?
+  message        String?
+  date        DateTime?
+  createdAt   DateTime  @default(now())
+  answered    Boolean   @default(false)
 }
