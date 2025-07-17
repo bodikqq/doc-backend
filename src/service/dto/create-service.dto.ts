@@ -34,27 +34,3 @@ export class CreateServiceDto {
     @IsNumber()
     reviewCount?: number;
 }
-/*
-id          Int      @id @default(autoincrement())
-  name        String
-  category    String
-  description String?
-  imageUrl    String?
-  priceUah    Int
-  priceEur    Int?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime? @updatedAt
-  reviewCount Int @default(0)
-
-
-  service_features ServiceFeature []
-}
-
-model ServiceFeature  {
-  id          Int      @id @default(autoincrement())
-  serviceId   Int
-  sortOrder   Int      @default(0)
-  text        String
-
-  service     Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
-*/

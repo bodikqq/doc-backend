@@ -6,7 +6,8 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'http://localhost:3001', // or whatever port your Next.js runs on
-    credentials: true, // if you use cookies or Authorization headers
+    credentials: true,
+    ignoreEnvFile: false // if you use cookies or Authorization headers
   });
 
   await app.listen(process.env.PORT ?? 3000);
